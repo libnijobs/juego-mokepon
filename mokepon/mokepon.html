@@ -5,24 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mokepon</title>
     <script src="js/mokepon.js"></script>
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
+    <div>
     <h1>mokepon! 🔥💧🌱</h1>
-
-
+    </div>
     <section id="select-masct">
         <h2> select you mascot:</h2>
-        Mascot:
-
-        <label for="dragonDeKomodo"> Dragon De Komodo</label>
-        <input type="radio" name="mascota" id="dragonDeKomodo">
-
-        <label for="zorro"> Zorro</label>
-        <input type="radio" name="mascota" id="zorro">
-        
-        <label for="bufalo"> Bufalo</label>
-        <input type="radio" name="mascota" id="bufalo">
-
+        <strong>Mascot:</strong>
+        <div class="mascotas">
+            <label for="dragonDeKomodo"> Dragon De Komodo</label>
+            <input type="radio" name="mascota" id="dragonDeKomodo">
+        </div>
+        <div class="mascotas">
+            <label for="zorro"> Zorro</label>
+            <input type="radio" name="mascota" id="zorro">
+        </div>
+            <div class="mascotas">
+            <label for="bufalo"> Bufalo</label>
+            <input type="radio" name="mascota" id="bufalo">
+        </div>
         <button id="button-mascot">Select</button>
     </section> 
 
@@ -39,7 +42,7 @@
         </p>
     </section>
     <section id="mensajes">
-        <p> your pet attacked with <span id="attack-player"></span>, the enemy's pet attacked with <span id="attack-enemy"></span> - WINNER 🎉</p>
+        
     </section>
     <section id="reload">
         <button>reload</button>
