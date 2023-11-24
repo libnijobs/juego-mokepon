@@ -6,47 +6,90 @@
     <title>Mokepon</title>
     <script src="js/mokepon.js"></script>
     <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="styles/table.css" media="(min-width: 800px)">
 </head>
 <body>
-    <div>
-    <h1>mokepon! 🔥💧🌱</h1>
-    </div>
-    <section id="select-masct">
-        <h2> select you mascot:</h2>
-        <strong>Mascot:</strong>
-        <div class="mascotas">
-            <label for="dragonDeKomodo"> Dragon De Komodo</label>
-            <input type="radio" name="mascota" id="dragonDeKomodo">
+    <section id="select-masct" class="container_select-masct">
+        <div class="title-principal">
+            <h1>MOKEPON 🔥💧🌱 </h1>
         </div>
-        <div class="mascotas">
-            <label for="zorro"> Zorro</label>
-            <input type="radio" name="mascota" id="zorro">
-        </div>
-            <div class="mascotas">
-            <label for="bufalo"> Bufalo</label>
-            <input type="radio" name="mascota" id="bufalo">
-        </div>
-        <button id="button-mascot">Select</button>
+        <div class="container-mascotas">
+                <h2 class="titles-secundarios select-mascotas">Select you mascot:</h2>
+                <label for="dragon" class="mascotas">
+                    <p>Dragon</p>
+                    <img src="img/dragon-removebg-preview.png" alt="">
+                </label>
+                <input type="radio" name="mascota" id="dragon">
+                <label for="zorro" class="mascotas">
+                    <p>Zorro</p>
+                    <img src="img/zorro-removebg-preview.png" alt="">
+                </label>
+                <input type="radio" name="mascota" id="zorro">
+                <label for="bufalo" class="mascotas">
+                    <p>bufalo</p>
+                    <img src="img/bufalo-removebg-preview.png" alt="">
+                </label>
+                <input type="radio" name="mascota" id="bufalo">
+                <div class="container-button">
+                    <button id="button-mascot">Select</button>
+                </div>
+            </div>
     </section> 
 
     <section id="select-attack">
-        <h2>select your attack</h2>
+        <div class="title-principal">
+            <h1>MOKEPON 🔥💧🌱</h1>
+        </div>
+        <h2 class="titles-secundarios">select your attack</h2>
+        <section class="container_select_attack">
+  
+            <div class="container_attack-buttons">
+                <button id="button-fire">Fire 🔥</button>
+                <button id="button-water">Water 💧</button>
+                <button id="button-earth">Earth 🌱</button>
+            </div>
 
-        <p>You mascot <span id="mascot-player"></span> have <span id="liveMascotPlayer">3</span> live</p>
-        <p>The mascot to enemy <span id="mascot-enemy"></span> have <span id="liveMascotEnemy">3</span> live</p>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <td>Ataque del Jugador</td>
+                        <td>Ataque del Enemigo</td>
+                        <td>Resultado De ambos Ataques</td>
+                    </tr>
+                    <tr>
+                        <td id="ataque-jugador" class="Mascot-Player">
+                            <p></p>
+                        </td>
+                        <td id="ataque-enemigo" class="Mascot-enemigo">
+                            <p></p>
+                        </td>
+                        <td id="mensajes" class="mensajeGanador">
+                            <p id="resultado"></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
-        <p>
-            <button id="button-fire">Fire 🔥</button>
-            <button id="button-water">Water 💧</button>
-            <button id="button-earth">Earth 🌱</button>
-        </p>
+            <section id="ganador" class="result-ganador">
+                <p></p>
+            </section>
+
+            <section id="reload">
+                <button>reload</button>
+            </section>
+
+            <div class="container_combate-jugador">
+                <p>Your Mascot <span id="mascot-player"></span> </p>
+                    
+                <p>Have <span id="liveMascotPlayer" class="Mascota">3</span> Live</p>
+            </div>
+            <div class="container_combate-enemigo">
+                <p>The Mascot To Enemy <span id="mascot-enemy"></span></p>
+                <p>Have <span id="liveMascotEnemy" class="Mascota">3</span> Live</p>
+            </div>
+        </section>
     </section>
-    <section id="mensajes">
-        
-    </section>
-    <section id="reload">
-        <button>reload</button>
-    </section>
+    
     
 </body>
 </html>
