@@ -1,18 +1,220 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
+    padding-top: 30px;
+    height: auto;
+    background: fixed;
+    background-image: linear-gradient(to right, #b18989, rgb(230, 155, 80));
+    background-repeat: no-repeat;
+}
+.title-principal{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.0rem;
+    padding: 15px;
+    font-weight: bold;
+    color: #f9f9f9b0;
+    text-shadow: 1px 4px 3px #0000006b;
+}
+.titles-secundarios{
+    grid-column: -1/-4;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: #f9f9f9b0;
+    text-shadow: 1px 3px 3px #0000006b;
+}
+.container_select-masct{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.container-mascotas {
+    flex-direction: column;
+    display: flex;
+    place-items: center;
+    gap: 20px;
+    width: 300px;
+    padding: 20px;
+    height: 570px;
+    background-image: linear-gradient(to right, #b1898942, rgba(230, 155, 80, 0.199));
+    box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
+    border: #0505053c solid 2px;
+}
+.mascotas{
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 200px;
+    height: 200px;
+    background-image: linear-gradient(to right, #b1898988, rgba(230, 155, 80, 0.61));
+    box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
+    border: #0505053c solid 2px;
+    cursor: pointer;
+}
+.mascotas:hover{
+    background-image: linear-gradient(to right, #c99797a6,#e69b509c);
+    box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
+    border: #0505053c solid 2px;
+}
+.mascotas:active {
+    background-color: #0000006b;
+}
+.mascotas p{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgba(245, 245, 245, 0.851);
+    text-shadow: 1px 3px 3px #0000006b;
+    padding-right: 15px;
+}
+input{
+    display: none;
+}
+.container-button{
+    grid-column: -1/-4;
+    grid-column: 1/4;
+}
+button{
+    width: 110px;
+    height: 40px;
+    margin: 20px auto;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #b18989,#e69b50);
+    box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
+    border: #0505053c solid 2px;
+    color: #f9f9f9b0;
+    cursor: pointer;
+}
+button:hover{
+    background-image: linear-gradient(to right, #c99797e0,#e69b50c5);
+    box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
+    border: #0505053c solid 2px;
+    cursor: pointer;
+}
+.Mascota{
+    display: flex;
     flex-direction: column;
-    height: 100vh;
-}
-
-.container {
-    display: flex;
     align-items: center;
-}
-.mascotas{
-    background-color: #f1f1f1;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 100%;
-    display: flex;
+    height: 27px;
+    background-image: linear-gradient(to right, #b18989,#e69b50);
+    box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
+    border: #0505053c solid 2px;
+}
+img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: #0505053c solid 2px;
+}
+.container_select_attack {
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 100px 200px 350px;
+    gap: 10px;
+    padding: 10px;
+    max-width: 500px;
+}
+/* Estilo para el contenedor de la tabla */
+.table-container {
+    grid-row: 3;
+    grid-column: 1/3;
+    height: 300px;
+    order: 2;
+    width: 300px;
+    border-radius: 10px;
+    border: black solid 2px;
+    box-shadow: -2px 4px 15px black;
+    background-image: linear-gradient(to right, #b1898988, rgba(230, 155, 80, 0.61));
+    overflow: auto; /* Agregar desplazamiento vertical a la tabla */
+}
 
+table {
+    text-align: center;
+    padding: 5px;
+
+    border-collapse: collapse;
+    width: 100%; /* Asegurarse de que la tabla ocupe el ancho completo del contenedor */
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid black;
+    height: 100%;
+    overflow: hidden;
+}
+
+th, td {
+    max-height: 100%;
+}
+
+th, td {
+    overflow-y: scroll; /* Agregar el scroll vertical si es necesario */
+}
+
+
+.result-ganador {
+    width: 300px;
+    transform: translate(-150px, 325px);
+    grid-column: 2;
+    grid-row: 3;
+    text-align: center;
+    height: 50px;
+    font-size: 1.2rem;
+    color: #f9f9f9b0;
+    border-radius: 10px;
+    text-shadow: 1px 3px 3px #0000006b;
+}
+.container_attack-buttons {
+    display: flex;
+    grid-column: 1/4;
+    gap: 10px;
+}
+.container_combate-jugador {
+    grid-row: 2;
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    row-gap: 20px;
+    width: 170px;
+    height: 180px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-image: linear-gradient(to right, #e66c6c,#e69b50d8);
+    box-shadow: 7px 7px 3px #0000006b;
+}
+.container_combate-enemigo{
+    grid-row: 2;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    row-gap: 20px;
+    width: 170px;
+    height: 180px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-image: linear-gradient(to right, #e6ca6c,#bc630bf3);
+    box-shadow: 7px 7px 3px #0000006b;
+}
+#reload {
+    transform: translate(90px, 0px);
+    grid-column: auto;
+    grid-row: 4;
+    height: 10px;
 }

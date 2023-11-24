@@ -1,0 +1,132 @@
+.container-mascotas{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    place-items: center;
+    gap: 20px;
+    width: 900px;
+    padding: 20px;
+    height: 500px;
+    background-image: linear-gradient(to right, #b1898942, rgba(230, 155, 80, 0.199));
+    box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
+    border: #0505053c solid 2px;
+}
+.mascotas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    background-image: linear-gradient(to right, #b1898988, rgba(230, 155, 80, 0.61));
+    box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
+    border: #0505053c solid 2px;
+    cursor: pointer;
+}
+.mascotas:hover{
+    background-image: linear-gradient(to right, #c99797a6,#e69b509c);
+    box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
+    border: #0505053c solid 2px;
+}
+.mascotas:active {
+    background-color: #0000006b;
+}
+.mascotas p{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgba(245, 245, 245, 0.851);
+    text-shadow: 1px 3px 3px #0000006b;
+    padding-right: 15px;
+}
+.container-button{
+    grid-column: -1/-4;
+    grid-column: 1/4;
+}
+.container_select_attack{
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 100px repeat( 2, 1fr);
+    row-gap: 10px;
+    max-width: 100%;
+}
+
+.table-container {
+    grid-row: 2;
+    grid-column: 2;
+    height: 200px;
+    order: 2;
+    width: 500px;
+}
+
+table {
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    border: black solid 2px;
+    box-shadow: -2px 4px 15px black;
+    background-image: linear-gradient(to right, #b1898988, rgba(230, 155, 80, 0.61));
+    overflow: auto; /* Scroll interno a la tabla */
+    border-collapse: collapse; /* Eliminar espacio entre celdas */
+}
+th, td {
+    padding: 10px;
+    border: 1px solid black;
+    height: 100%;
+}
+
+button{
+    width: 200px;
+}
+.result-ganador {
+    grid-column: 2;
+    grid-row: 3;
+    text-align: center;
+    height: 100px;
+    width: 500px;
+    padding: 40px;
+    font-size: 2.0rem;
+    color: #f9f9f9b0;
+    border-radius: 10px;
+    transform: translate(10px, 50px);
+    text-shadow: 1px 3px 3px #0000006b;
+}
+.container_attack-buttons {
+    display: flex;
+    grid-column: 1/4;
+    gap: 30px;
+}
+.container_combate-jugador {
+    grid-row: 2;
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    row-gap: 20px;
+    width: 170px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-image: linear-gradient(to right, #e66c6c,#e69b50d8);
+    box-shadow: 7px 7px 3px #0000006b;
+}
+.container_combate-enemigo{
+    grid-row: 2;
+    grid-column: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    row-gap: 20px;
+    width: 170px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-image: linear-gradient(to right, #e6ca6c,#bc630bf3);
+    box-shadow: 7px 7px 3px #0000006b;
+}
+#reload{
+    grid-column: 2;
+    grid-row: 3;
+    position: absolute;
+    top: 700px;
+    transform: translate(0px, 0px);
+}
