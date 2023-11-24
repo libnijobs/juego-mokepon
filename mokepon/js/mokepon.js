@@ -10,6 +10,7 @@ function iniciarJuego() {
   let reload = document.getElementById("reload")
   reload.style.display = 'none'
 
+  
   let botonMascotaJugador = document.getElementById("button-mascot");
   botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
   let buttonFire = document.getElementById("button-fire");
@@ -21,19 +22,20 @@ function iniciarJuego() {
 
   let reiniciar = document.getElementById("reload");
   reiniciar.addEventListener("click", reloadPlay);
+
 }
 
 function seleccionarMascotaJugador() {
   let selectionAttack = document.getElementById("select-attack")
   let selectionMascot = document.getElementById("select-masct")
   
-  let inputdragonDeKomodo = document.getElementById("dragonDeKomodo");
+  let inputdragon = document.getElementById("dragon");
   let inputZorro = document.getElementById("zorro");
   let inputbufalo = document.getElementById("bufalo");
   let spanMascotPlayer = document.getElementById("mascot-player");
 
-  if (inputdragonDeKomodo.checked) {
-    spanMascotPlayer.innerHTML = "Dragon De Komodo";
+  if (inputdragon.checked) {
+    spanMascotPlayer.innerHTML = "Dragon";
     selectionAttack.style.display = 'block'
     selectionMascot.style.display = 'none'
   } else if (inputZorro.checked) {
@@ -44,7 +46,7 @@ function seleccionarMascotaJugador() {
     spanMascotPlayer.innerHTML = "Bufalo";
       selectionAttack.style.display = 'block'
       selectionMascot.style.display = 'none'
-  }else if(!inputdragonDeKomodo.checked && !inputZorro.checked && !inputbufalo.checked){
+  }else if(!inputdragon.checked && !inputZorro.checked && !inputbufalo.checked){
     alert('Debes seleccionar una mascota')
   }
   seleccionarMascotaEnemigo();
@@ -59,7 +61,7 @@ function seleccionarMascotaEnemigo() {
   let spanMascotEnemy = document.getElementById("mascot-enemy");
 
   if (mascotRandom == 1) {
-    spanMascotEnemy.innerHTML = "Dragon De Komodo";
+    spanMascotEnemy.innerHTML = "Dragon";
   } else if (mascotRandom == 2) {
     spanMascotEnemy.innerHTML = "Zorro";
   } else {
@@ -68,15 +70,15 @@ function seleccionarMascotaEnemigo() {
 }
 
 function ataqueFuego() {
-  attackPlayer = 'Fuego'
+  attackPlayer = '🔥'
   ataqueAleatorioEnemigo()
 }
 function ataqueAgua() {
-  attackPlayer = 'Agua'
+  attackPlayer = '💧'
   ataqueAleatorioEnemigo()
 }
 function ataqueTierra() {
-  attackPlayer = 'Tierra'
+  attackPlayer = '🌱'
   ataqueAleatorioEnemigo()
 }
 
@@ -84,11 +86,11 @@ function ataqueAleatorioEnemigo() {
   let ataqueAleatorio = aleatorio(1,3)
   
   if (ataqueAleatorio == 1) {
-      attackEnemy = 'Fuego'
+      attackEnemy = '🔥'
   } else if (ataqueAleatorio == 2) {
-      attackEnemy = 'Agua'
+      attackEnemy = '💧'
   } else {
-      attackEnemy = 'Tierra'
+      attackEnemy = '🌱'
   }
 
   combate()
@@ -117,11 +119,11 @@ function combate(){
 
   if (attackEnemy == attackPlayer) {
     crearMensaje(' Empate') 
-}else if (attackPlayer == "Fuego" && attackEnemy == "Tierra"|| attackPlayer == "Agua" && attackEnemy == "Fuego"||attackPlayer == "Tierra" && attackEnemy == "Agua"){
+}else if (attackPlayer == "🔥" && attackEnemy == "🌱"|| attackPlayer == "💧" && attackEnemy == "🔥"||attackPlayer == "🌱" && attackEnemy == "💧"){
     crearMensaje(" TU GANAS con: " + attackPlayer)
     liveEnemy--
     spanLiveEnemy.innerHTML = liveEnemy
-}else if(attackEnemy == "Fuego" && attackPlayer == "Tierra"|| attackEnemy == "Agua" && attackPlayer == "Fuego"||attackEnemy == "Tierra" && attackPlayer == "Agua"){
+}else if(attackEnemy == "🔥" && attackPlayer == "🌱"|| attackEnemy == "💧" && attackPlayer == "🔥"||attackEnemy == "🌱" && attackPlayer == "💧"){
   crearMensaje(" GANA el computador con: " + attackEnemy)
     livePlayer--
     spanLivePlayer.innerHTML = livePlayer
@@ -133,11 +135,11 @@ function validarCombate() {
   let reload = document.getElementById("reload")
 
   if(livePlayer == 0){
-    alert('GANA EL COMPUTADOR')
+    ganadorMensaje('GANA EL COMPUTADOR');
     disabled()
     reload.style.display = 'block'
   }else if(liveEnemy == 0){
-    alert('GANA EL JUGADOR')
+    ganadorMensaje('TU GANAS');
     disabled()
     reload.style.display = 'block'
   }
@@ -154,11 +156,30 @@ function disabled(){
 
 function crearMensaje(resultado) {
   let sectionMensajes = document.getElementById('mensajes')
-  
-  let parrafo = document.createElement('p')
-  parrafo.innerHTML = 'Tu mascota atacó con ' + attackPlayer + ', las mascota del enemigo atacó con ' + attackEnemy + ":" + resultado
+ 
+  let ataqueJugador = document.getElementById('ataque-jugador')
+  let ataqueEnemigo = document.getElementById('ataque-enemigo')
 
+  let parrafo = document.createElement('p')
+  parrafo.innerHTML = resultado
   sectionMensajes.appendChild(parrafo)
+
+  let parrafoAttackPlayer = document.createElement('p')
+  parrafoAttackPlayer.innerHTML = attackPlayer
+  ataqueJugador.appendChild(parrafoAttackPlayer)
+  
+  let parrafoAttackEnemy = document.createElement('p')
+  parrafoAttackEnemy.innerHTML = attackEnemy
+  ataqueEnemigo.appendChild(parrafoAttackEnemy)
+}
+
+function ganadorMensaje(ganador){
+  let resultadoGanador = document.getElementById('ganador')
+
+  let parrafoResultadoGanador = document.createElement('p')
+  parrafoResultadoGanador.innerHTML = ganador
+  resultadoGanador.appendChild(parrafoResultadoGanador)
+
 }
 
 function reloadPlay() {
