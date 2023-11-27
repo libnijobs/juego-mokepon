@@ -95,23 +95,6 @@ function ataqueAleatorioEnemigo() {
 
   combate()
 }
-// function combate(){
-//   if (attackEnemy == attackPlayer) {
-//     crearMensaje(' Empate') 
-// } else if (attackPlayer == "Fuego" && attackEnemy == "Tierra") {
-//     crearMensaje(" TU GANAS con: " + attackPlayer)
-// } else if (attackPlayer == "Agua" && attackEnemy == "Fuego") {
-//     crearMensaje(" TU GANAS con: " + attackPlayer)
-// } else if (attackPlayer == "Tierra" && attackEnemy == "Agua") {
-//     crearMensaje(" TU GANAS con: " + attackPlayer)
-// } else if (attackEnemy == "Fuego" && attackPlayer == "Tierra") {
-//     crearMensaje(" GANA el computador con: " + attackEnemy)
-// } else if(attackEnemy == "Agua" && attackPlayer == "Fuego"){
-//   crearMensaje(" GANA el computador con: " + attackEnemy)
-// } else if(attackEnemy == "Tierra" && attackPlayer == "Agua"){
-//   crearMensaje(" GANA el computador con: " + attackEnemy)
-// }
-// }
 
 function combate(){
   let spanLiveEnemy = document.getElementById("liveMascotEnemy");
@@ -137,11 +120,11 @@ function validarCombate() {
   if(livePlayer == 0){
     ganadorMensaje('GANA EL COMPUTADOR');
     disabled()
-    reload.style.display = 'block'
+    reload.style.display = 'flex'
   }else if(liveEnemy == 0){
     ganadorMensaje('TU GANAS');
     disabled()
-    reload.style.display = 'block'
+    reload.style.display = 'flex'
   }
 }
 
