@@ -1,3 +1,7 @@
+.titles-secundarios {
+    grid-column: 1/4;
+    grid-row: 1;
+}
 .container-mascotas{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -41,53 +45,49 @@
     grid-column: -1/-4;
     grid-column: 1/4;
 }
+#select-attack{
+    padding: 0px;
+}
 .container_select_attack{
     display: grid;
     justify-items: center;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 100px repeat( 2, 1fr);
     row-gap: 10px;
-    max-width: 100%;
 }
 
 .table-container {
     grid-row: 2;
     grid-column: 2;
     height: 200px;
-    order: 2;
     width: 500px;
+    overflow: auto;
 }
-
 table {
     text-align: center;
     padding: 5px;
-    border-radius: 10px;
-    border: black solid 2px;
-    box-shadow: -2px 4px 15px black;
-    background-image: linear-gradient(to right, #b1898988, rgba(230, 155, 80, 0.61));
-    overflow: auto; /* Scroll interno a la tabla */
-    border-collapse: collapse; /* Eliminar espacio entre celdas */
+    border-collapse: collapse;
+    width: 100%; 
 }
 th, td {
     padding: 10px;
     border: 1px solid black;
     height: 100%;
+    overflow: hidden;
 }
-
 button{
     width: 200px;
 }
 .result-ganador {
     grid-column: 2;
     grid-row: 3;
-    text-align: center;
     height: 100px;
     width: 500px;
     padding: 40px;
     font-size: 2.0rem;
     color: #f9f9f9b0;
     border-radius: 10px;
-    transform: translate(10px, 50px);
+    transform: translate(0px, 30px);
     text-shadow: 1px 3px 3px #0000006b;
 }
 .container_attack-buttons {
@@ -123,10 +123,13 @@ button{
     background-image: linear-gradient(to right, #e6ca6c,#bc630bf3);
     box-shadow: 7px 7px 3px #0000006b;
 }
-#reload{
+#reload {
     grid-column: 2;
     grid-row: 3;
-    position: absolute;
     top: 700px;
-    transform: translate(0px, 0px);
+    transform: translate(0px, 120px);
+}
+.botones-ataque{
+    height: 40px;
+    width: 110px;
 }
