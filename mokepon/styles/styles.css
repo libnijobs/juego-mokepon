@@ -6,11 +6,10 @@
 body {
     background-image: url(../img/fondo2.jpg);
     background-repeat: no-repeat;
-    background-size: cover;
     background-position: center;
     padding-top: 30px;
     margin: 0;
-    background-size: 100% 116%;
+    background-size: auto 116%;
 }
 .title-principal{
     text-align: center;
@@ -78,6 +77,9 @@ body {
 }
 input{
     display: none;
+}
+input:checked + label{
+    background-color: rgba(255, 0, 0, 0.647);
 }
 .container-button{
     grid-column: -1/-4;

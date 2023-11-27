@@ -1,3 +1,6 @@
+body {
+    background-size: 100% 116%;
+}
 .titles-secundarios {
     grid-column: 1/4;
     grid-row: 1;
@@ -8,8 +11,8 @@
     grid-template-rows: repeat(3, 1fr);
     place-items: center;
     gap: 20px;
-    width: 900px;
-    padding: 20px;
+    width: auto;
+    padding: 30px;
     height: 500px;
     background-image: linear-gradient(to right, #b1898942, rgba(230, 155, 80, 0.199));
     box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
