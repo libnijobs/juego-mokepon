@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mokepon</title>
-    <script src="js/mokepon.js"></script>
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="styles/table.css" media="(min-width: 800px)">
 </head>
@@ -15,21 +14,21 @@
         </div>
         <div class="container-mascotas">
                 <h2 class="titles-secundarios select-mascotas">Select you mascot:</h2>
+                <input type="radio" name="mascota" id="dragon">
                 <label for="dragon" class="mascotas">
                     <p>Dragon</p>
                     <img src="img/dragon-removebg-preview.png" alt="">
                 </label>
-                <input type="radio" name="mascota" id="dragon">
+                <input type="radio" name="mascota" id="zorro">
                 <label for="zorro" class="mascotas">
                     <p>Zorro</p>
                     <img src="img/zorro-removebg-preview.png" alt="">
                 </label>
-                <input type="radio" name="mascota" id="zorro">
+                <input type="radio" name="mascota" id="bufalo">
                 <label for="bufalo" class="mascotas">
                     <p>bufalo</p>
                     <img src="img/bufalo-removebg-preview.png" alt="">
                 </label>
-                <input type="radio" name="mascota" id="bufalo">
                 <div class="container-button">
                     <button id="button-mascot">Select</button>
                 </div>
@@ -88,8 +87,7 @@
                 <p>Have <span id="liveMascotEnemy" class="Mascota">3</span> Live</p>
             </div>
         </section>
-    </section>
-    
-    
+    </section>  
+    <script src="js/mokepon.js"></script>
 </body>
 </html>
