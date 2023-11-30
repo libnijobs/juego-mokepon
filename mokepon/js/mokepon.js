@@ -1,14 +1,12 @@
+const selectionAttack = document.getElementById("select-attack");
+const selectionMascot = document.getElementById("select-masct");
 const reload = document.getElementById("reload");
 reload.style.display = "none";
 const botonMascotaJugador = document.getElementById("button-mascot");
 const buttonFire = document.getElementById("button-fire");
 const buttonWater = document.getElementById("button-water");
 const buttonEarth = document.getElementById("button-earth");
-const selectionAttack = document.getElementById("select-attack");
-const selectionMascot = document.getElementById("select-masct");
-const inputdragon = document.getElementById("dragon");
-const inputZorro = document.getElementById("zorro");
-const inputbufalo = document.getElementById("bufalo");
+
 const spanMascotPlayer = document.getElementById("mascot-player");
 const spanMascotEnemy = document.getElementById("mascot-enemy");
 const spanLiveEnemy = document.getElementById("liveMascotEnemy");
@@ -17,15 +15,20 @@ const sectionMensajes = document.getElementById("mensajes");
 const ataqueJugador = document.getElementById("ataque-jugador");
 const ataqueEnemigo = document.getElementById("ataque-enemigo");
 const resultadoGanador = document.getElementById("ganador");
+const contenedormasct = document.getElementById("contenedorMascota");
 
 let mokepones = [];
-let opcionDeMokepones
 let attackPlayer;
 let attackEnemy;
+let opcionDeMokepones;
 let livePlayer = 3;
 let liveEnemy = 3;
 
-class Moquepon{
+let inputdragon;
+let inputZorro;
+let inputbufalo;
+
+class Mokepon{
   constructor(nombre, foto, vida){
     this.nombre = nombre;
     this.foto = foto;
@@ -34,49 +37,56 @@ class Moquepon{
   }
 }
 
-let dragon = new Moquepon("Dragon","img/dragon.png",3);
-let zorro = new Moquepon("Zorro","img/zorro.png",3);
-let bufalo = new Moquepon("Bufalo","img/bufalo.png",3);
+let dragon = new Mokepon("Dragon","img/dragon-removebg-preview.png",3);
+let zorro = new Mokepon("Zorro","img/zorro-removebg-preview.png",3);
+let bufalo = new Mokepon("Bufalo","img/bufalo-removebg-preview.png",3);
 
 dragon.ataques.push(
   {nombre: '💧', id: 'button-water'},
   {nombre: '🔥', id: 'button-fire'},
-  {nombre: '🌱', id: 'button-earth'}
+  {nombre: '🌱', id: 'button-earth'},
 );
 
 zorro.ataques.push(
   {nombre: '💧', id: 'button-water'},
   {nombre: '🔥', id: 'button-fire'},
-  {nombre: '🌱', id: 'button-earth'}
+  {nombre: '🌱', id: 'button-earth'},
 );
 
 bufalo.ataques.push(
   {nombre: '💧', id: 'button-water'},
   {nombre: '🔥', id: 'button-fire'},
-  {nombre: '🌱', id: 'button-earth'}
+  {nombre: '🌱', id: 'button-earth'},
 );
 
 mokepones.push(dragon, zorro, bufalo);
 
 function iniciarJuego() {
 
-  mokepones.forEach(mokepon => {
+  selectionAttack.style.display = "none";
+
+  mokepones.forEach((mokepon) => {
     opcionDeMokepones = `
-    <input type="radio" name="mascota" id= ${mokepon.nombre}>
+    <input type="radio" name="mascota" id=${mokepon.nombre} />
     <label for=${mokepon.nombre} class="mascotas">
-        <p>${mokepon.nombre}</p>
+    <p>${mokepon.nombre}</p>
         <img src=${mokepon.foto} alt=${mokepon.nombre}>
     </label>`
+
+    contenedormasct.innerHTML += opcionDeMokepones;
+
+    inputdragon = document.getElementById("Dragon");
+    inputZorro = document.getElementById("Zorro");
+    inputbufalo = document.getElementById("Bufalo");
   });
 
-  selectionAttack.style.display = "none";
   botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
   buttonFire.addEventListener("click", ataqueFuego);
   buttonWater.addEventListener("click", ataqueAgua);
   buttonEarth.addEventListener("click", ataqueTierra);
   reload.addEventListener("click", reloadPlay);
 }
-
+  // console.log(inputdragon);
 function seleccionarMascotaJugador() {
   if (inputdragon.checked) {
     spanMascotPlayer.innerHTML = "Dragon";

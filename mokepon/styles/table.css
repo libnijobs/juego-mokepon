@@ -1,5 +1,5 @@
 body {
-    background-size: 100% 116%;
+    background-size: 100% 150%;
 }
 .titles-secundarios {
     grid-column: 1/4;
@@ -8,15 +8,15 @@ body {
 .container-mascotas{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: 60px 320px;
     place-items: center;
     gap: 20px;
     width: auto;
     padding: 30px;
     height: 500px;
-    background-image: linear-gradient(to right, #b1898942, rgba(230, 155, 80, 0.199));
-    box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
-    border: #0505053c solid 2px;
+}
+.estructura_mascotas {
+   
 }
 .mascotas{
     display: flex;
@@ -46,7 +46,7 @@ body {
 }
 .container-button{
     grid-column: -1/-4;
-    grid-column: 1/4;
+    grid-row: 1/4;
 }
 #select-attack{
     padding: 0px;

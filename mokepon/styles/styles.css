@@ -37,6 +37,13 @@ body {
     width: 100%;
 }
 .container-mascotas {
+    background-image: linear-gradient(to right, #b1898942, rgba(230, 155, 80, 0.199));
+    box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
+    border: #0505053c solid 2px;
+    order: 1;
+    margin-bottom: 30px;
+}
+.estructura_mascotas{
     display: flex;
     flex-direction: column;
     place-items: center;
@@ -44,10 +51,7 @@ body {
     width: 300px;
     padding: 20px;
     height: 570px;
-    margin-bottom: 30px;
-    background-image: linear-gradient(to right, #b1898942, rgba(230, 155, 80, 0.199));
-    box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
-    border: #0505053c solid 2px;
+
 }
 .mascotas{
     display: flex;
@@ -82,8 +86,7 @@ input:checked + label{
     background-color: rgba(255, 0, 0, 0.647);
 }
 .container-button{
-    grid-column: -1/-4;
-    grid-column: 1/4;
+    display: flex;
 }
 button{
     width: 110px;
