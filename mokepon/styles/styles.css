@@ -30,7 +30,6 @@ body {
     text-shadow: 1px 3px 3px #0000006b;
 }
 .container_select-masct{
-    /* background-image: url(../img/fondo.jpg); */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,7 +39,6 @@ body {
     background-image: linear-gradient(to right, #b1898942, rgba(230, 155, 80, 0.199));
     box-shadow: 4px 3px 2px 1px rgba(0, 0, 0, 0.2);
     border: #0505053c solid 2px;
-    order: 1;
     margin-bottom: 30px;
 }
 .estructura_mascotas{

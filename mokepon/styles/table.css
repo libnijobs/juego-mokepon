@@ -5,18 +5,21 @@ body {
     grid-column: 1/4;
     grid-row: 1;
 }
-.container-mascotas{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 60px 320px;
-    place-items: center;
-    gap: 20px;
-    width: auto;
+.container-mascotas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
     padding: 30px;
     height: 500px;
+    min-width: 642px;
 }
 .estructura_mascotas {
-   
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 .mascotas{
     display: flex;
@@ -43,10 +46,6 @@ body {
     color: rgba(245, 245, 245, 0.851);
     text-shadow: 1px 3px 3px #0000006b;
     padding-right: 15px;
-}
-.container-button{
-    grid-column: -1/-4;
-    grid-row: 1/4;
 }
 #select-attack{
     padding: 0px;
