@@ -16,7 +16,6 @@ const ataqueEnemigo = document.getElementById("ataque-enemigo");
 const contenedorTarjetas = document.getElementById("contenedorTarjetas");
 const contenedorAtaques = document.getElementById('contenedorAtaques')
 
-
 let mokepones = [];
 let attackPlayer;
 let attackEnemy;
@@ -24,10 +23,11 @@ let opcionDeMokepones;
 let inputdragon;
 let inputZorro;
 let inputbufalo;
-
-let buttonFire = document.getElementById("button-fire");
-let buttonWater = document.getElementById("button-water");
-let buttonEarth = document.getElementById("button-earth");
+let mascotaJugador
+let ataquesMokepon
+let buttonFire
+let buttonWater
+let buttonEarth
 
 let livePlayer = 3;
 let liveEnemy = 3;
@@ -93,41 +93,61 @@ function iniciarJuego() {
   botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
   reload.addEventListener("click", reloadPlay);
 
-  buttonFire.addEventListener("click", ataqueFuego);
-  buttonWater.addEventListener("click", ataqueAgua);
-  buttonEarth.addEventListener("click", ataqueTierra);
 }
-  // console.log(inputdragon);
+
 function seleccionarMascotaJugador() {
   selectionMascot.style.display = "none";
   selectionAttack.style.display = "block";
 
   if (inputdragon.checked) {
-    spanMascotPlayer.innerHTML = "Dragon";
+    spanMascotPlayer.innerHTML = inputdragon.id
+    mascotaJugador = inputdragon.id
   } else if (inputZorro.checked) {
-    spanMascotPlayer.innerHTML = "Zorro";
+    spanMascotPlayer.innerHTML = inputZorro.id
+    mascotaJugador = inputZorro.id
   } else if (inputbufalo.checked) {
-    spanMascotPlayer.innerHTML = "Bufalo";
+    spanMascotPlayer.innerHTML = inputbufalo.id
+    mascotaJugador = inputbufalo.id
   } else{
     alert("Debes seleccionar una mascota");
   }
+  extraerAtaques(mascotaJugador)
   seleccionarMascotaEnemigo();
 }
 
-function aleatorio(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+function extraerAtaques(mascotaJugador) {
+  let ataques
+  for (let i = 0; i < mokepones.length; i++) {
+      if (mascotaJugador === mokepones[i].nombre) {
+          ataques = mokepones[i].ataques
+      }    
+  }
+  // console.log(ataques);
+  mostrarAtaques(ataques)
+}
+
+function mostrarAtaques(ataques) {
+  ataques.forEach((ataque) => {
+    ataquesMokepon = `
+    <button id=${ataque.id} class="botones-ataque">${ataque.nombre}</button>`
+    contenedorAtaques.innerHTML += ataquesMokepon;
+  })
+
+  buttonFire = document.getElementById("button-fire");
+  buttonWater = document.getElementById("button-water");
+  buttonEarth = document.getElementById("button-earth");
+
+  buttonFire.addEventListener("click", ataqueFuego);
+  buttonWater.addEventListener("click", ataqueAgua);
+  buttonEarth.addEventListener("click", ataqueTierra);
 }
 
 function seleccionarMascotaEnemigo() {
-  let mascotRandom = aleatorio(1, 3);
+  let mascotRandom = aleatorio(0, mokepones.length -1);
 
-  if (mascotRandom == 1) {
-    spanMascotEnemy.innerHTML = "Dragon";
-  } else if (mascotRandom == 2) {
-    spanMascotEnemy.innerHTML = "Zorro";
-  } else {
-    spanMascotEnemy.innerHTML = "Bufalo";
-  }
+  spanMascotEnemy.innerHTML = mokepones[mascotRandom].nombre
+  ataquesMokeponEnemigo = mokepones[mascotRandom].ataques
+  // secuenciaAtaque()
 }
 
 function ataqueFuego() {
@@ -142,6 +162,12 @@ function ataqueTierra() {
   attackPlayer = "🌱";
   ataqueAleatorioEnemigo();
 }
+
+function aleatorio(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+
 
 function ataqueAleatorioEnemigo() {
   let ataqueAleatorio = aleatorio(1, 3);
