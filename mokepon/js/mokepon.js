@@ -3,19 +3,22 @@ const selectionMascot = document.getElementById("select-masct");
 const reload = document.getElementById("reload");
 reload.style.display = "none";
 const botonMascotaJugador = document.getElementById("button-mascot");
-const buttonFire = document.getElementById("button-fire");
-const buttonWater = document.getElementById("button-water");
-const buttonEarth = document.getElementById("button-earth");
-
 const spanMascotPlayer = document.getElementById("mascot-player");
 const spanMascotEnemy = document.getElementById("mascot-enemy");
 const spanLiveEnemy = document.getElementById("liveMascotEnemy");
 const spanLivePlayer = document.getElementById("liveMascotPlayer");
+
 const sectionMensajes = document.getElementById("mensajes");
+const resultadoGanador = document.getElementById("ganador");
+
 const ataqueJugador = document.getElementById("ataque-jugador");
 const ataqueEnemigo = document.getElementById("ataque-enemigo");
-const resultadoGanador = document.getElementById("ganador");
-const contenedormasct = document.getElementById("contenedorMascota");
+const contenedormasct = document.getElementById("contenedorTarjetas");
+const contenedorAtaques = document.getElementById('contenedorAtaques')
+
+const buttonFire = document.getElementById("button-fire");
+const buttonWater = document.getElementById("button-water");
+const buttonEarth = document.getElementById("button-earth");
 
 let mokepones = [];
 let attackPlayer;
