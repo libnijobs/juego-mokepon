@@ -13,23 +13,24 @@ const resultadoGanador = document.getElementById("ganador");
 
 const ataqueJugador = document.getElementById("ataque-jugador");
 const ataqueEnemigo = document.getElementById("ataque-enemigo");
-const contenedormasct = document.getElementById("contenedorTarjetas");
+const contenedorTarjetas = document.getElementById("contenedorTarjetas");
 const contenedorAtaques = document.getElementById('contenedorAtaques')
 
-const buttonFire = document.getElementById("button-fire");
-const buttonWater = document.getElementById("button-water");
-const buttonEarth = document.getElementById("button-earth");
 
 let mokepones = [];
 let attackPlayer;
 let attackEnemy;
 let opcionDeMokepones;
-let livePlayer = 3;
-let liveEnemy = 3;
-
 let inputdragon;
 let inputZorro;
 let inputbufalo;
+
+let buttonFire = document.getElementById("button-fire");
+let buttonWater = document.getElementById("button-water");
+let buttonEarth = document.getElementById("button-earth");
+
+let livePlayer = 3;
+let liveEnemy = 3;
 
 class Mokepon{
   constructor(nombre, foto, vida){
@@ -40,11 +41,13 @@ class Mokepon{
   }
 }
 
-let dragon = new Mokepon("Dragon","img/dragon-removebg-preview.png",3);
-let zorro = new Mokepon("Zorro","img/zorro-removebg-preview.png",3);
-let bufalo = new Mokepon("Bufalo","img/bufalo-removebg-preview.png",3);
+let dragon = new Mokepon("Dragon","img/dragon-removebg-preview.png",5);
+let zorro = new Mokepon("Zorro","img/zorro-removebg-preview.png",5);
+let bufalo = new Mokepon("Bufalo","img/bufalo-removebg-preview.png",5);
 
 dragon.ataques.push(
+  {nombre: '💧', id: 'button-water'},
+  {nombre: '💧', id: 'button-water'},
   {nombre: '💧', id: 'button-water'},
   {nombre: '🔥', id: 'button-fire'},
   {nombre: '🌱', id: 'button-earth'},
@@ -54,10 +57,14 @@ zorro.ataques.push(
   {nombre: '💧', id: 'button-water'},
   {nombre: '🔥', id: 'button-fire'},
   {nombre: '🌱', id: 'button-earth'},
+  {nombre: '🌱', id: 'button-earth'},
+  {nombre: '🌱', id: 'button-earth'},
 );
 
 bufalo.ataques.push(
   {nombre: '💧', id: 'button-water'},
+  {nombre: '🔥', id: 'button-fire'},
+  {nombre: '🔥', id: 'button-fire'},
   {nombre: '🔥', id: 'button-fire'},
   {nombre: '🌱', id: 'button-earth'},
 );
@@ -76,7 +83,7 @@ function iniciarJuego() {
         <img src=${mokepon.foto} alt=${mokepon.nombre}>
     </label>`
 
-    contenedormasct.innerHTML += opcionDeMokepones;
+    contenedorTarjetas.innerHTML += opcionDeMokepones;
 
     inputdragon = document.getElementById("Dragon");
     inputZorro = document.getElementById("Zorro");
@@ -84,30 +91,24 @@ function iniciarJuego() {
   });
 
   botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
+  reload.addEventListener("click", reloadPlay);
+
   buttonFire.addEventListener("click", ataqueFuego);
   buttonWater.addEventListener("click", ataqueAgua);
   buttonEarth.addEventListener("click", ataqueTierra);
-  reload.addEventListener("click", reloadPlay);
 }
   // console.log(inputdragon);
 function seleccionarMascotaJugador() {
+  selectionMascot.style.display = "none";
+  selectionAttack.style.display = "block";
+
   if (inputdragon.checked) {
     spanMascotPlayer.innerHTML = "Dragon";
-    selectionAttack.style.display = "block";
-    selectionMascot.style.display = "none";
   } else if (inputZorro.checked) {
     spanMascotPlayer.innerHTML = "Zorro";
-    selectionAttack.style.display = "block";
-    selectionMascot.style.display = "none";
   } else if (inputbufalo.checked) {
     spanMascotPlayer.innerHTML = "Bufalo";
-    selectionAttack.style.display = "block";
-    selectionMascot.style.display = "none";
-  } else if (
-    !inputdragon.checked &&
-    !inputZorro.checked &&
-    !inputbufalo.checked
-  ) {
+  } else{
     alert("Debes seleccionar una mascota");
   }
   seleccionarMascotaEnemigo();
