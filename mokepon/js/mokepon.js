@@ -32,6 +32,8 @@ let buttonEarth
 let botones = []
 let indexAtaqueJugador
 let indexAtaqueEnemigo
+let victoriasJugador = 0
+let victoriasEnemigo = 0
 let livePlayer = 3
 let liveEnemy = 3
 
@@ -153,17 +155,17 @@ function secuenciaAtaque() {
         attackPlayer.push('FUEGO')
         console.log(attackPlayer)
         boton.style.background = '#FF5733'
-        // boton.disabled = true
+        boton.disabled = true
       }else if (e.target.textContent === '💧'){
         attackPlayer.push('AGUA')
         console.log(attackPlayer)
         boton.style.background = '#1F92FE'
-        // boton.disabled = true
+        boton.disabled = true
       }else{
         attackPlayer.push('TIERRA')
         console.log(attackPlayer)
         boton.style.background = '#1FFE3A'
-        // boton.disabled = true
+        boton.disabled = true
       }
       ataqueAleatorioEnemigo()
     })
@@ -183,7 +185,7 @@ function ataqueAleatorioEnemigo() {
 
   if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {
     attackEnemy.push("FUEGO")
-  } else if (ataqueAleatorio == 2 || ataqueAleatorio == 3) {
+  } else if (ataqueAleatorio == 3 || ataqueAleatorio == 4) {
     attackEnemy.push("AGUA")
   } else {
     attackEnemy.push("TIERRA")
@@ -215,36 +217,41 @@ function combate() {
     (attackPlayer[index] === "TIERRA" && attackEnemy[index] === "AGUA")){
       indexAmbosOponente(index, index)
       crearMensaje(" TU GANAS con: " + attackPlayer[index])
-      liveEnemy--
-      spanLiveEnemy.innerHTML = liveEnemy
+      victoriasJugador++
+      spanLivePlayer.innerHTML = victoriasJugador
     }if(
       (attackEnemy[index] === "FUEGO" && attackPlayer[index] === "TIERRA") || 
       (attackEnemy[index] === "AGUA" && attackPlayer[index] === "FUEGO") || 
       (attackEnemy[index] === "TIERRA" && attackPlayer[index] === "AGUA")){
         indexAmbosOponente(index, index)
       crearMensaje(" GANA el computador con: " + attackEnemy[index])
-      livePlayer--
-      spanLivePlayer.innerHTML = livePlayer
+      victoriasEnemigo++
+      spanLiveEnemy.innerHTML = victoriasEnemigo
     }
   }
 validarCombate()
+}
+
+function validarCombate() {
+  if (victoriasJugador == victoriasEnemigo) {
+    ganadorMensaje("ESTO ES UN EMPATE")
+    disabled()
+    reload.style.display = "flex"
+  } else if (victoriasJugador > victoriasEnemigo) {
+    ganadorMensaje("TU GANAS")
+    disabled()
+    reload.style.display = "flex"
+  }else{
+    ganadorMensaje("GANA EL COMPUTADOR")
+    disabled()
+    reload.style.display = "flex"
+  }
 }
 
 function aleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function validarCombate() {
-  if (livePlayer == 0) {
-    ganadorMensaje("GANA EL COMPUTADOR")
-    disabled()
-    reload.style.display = "flex"
-  } else if (liveEnemy == 0) {
-    ganadorMensaje("TU GANAS")
-    disabled()
-    reload.style.display = "flex"
-  }
-}
 
 function disabled() {
   buttonFire.disabled = true
