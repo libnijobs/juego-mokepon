@@ -16,6 +16,9 @@ const ataqueEnemigo = document.getElementById("ataque-enemigo")
 const contenedorTarjetas = document.getElementById("contenedorTarjetas")
 const contenedorAtaques = document.getElementById('contenedorAtaques')
 
+const sectionVerMapa = document.getElementById("ver-mapa")
+const mapa = document.getElementById("mapa")
+
 let mokepones = []
 let attackPlayer = []
 let attackEnemy = []
@@ -36,6 +39,8 @@ let victoriasJugador = 0
 let victoriasEnemigo = 0
 let livePlayer = 3
 let liveEnemy = 3
+let lienzo = mapa.getContext("2d")
+let intervalo
 
 class Mokepon{
   constructor(nombre, foto, vida){
@@ -43,6 +48,16 @@ class Mokepon{
     this.foto = foto
     this.vida = vida
     this.ataques = []
+    this.x = 20
+    this.y = 30
+    this.x = 20
+    this.y = 30
+    this.ancho = 80
+    this.alto = 80
+    this.mapaFoto = new Image()
+    this.mapaFoto.src = foto
+    this.velocidadx = 0
+    this.velocidady = 0
   }
 }
 
@@ -79,6 +94,7 @@ mokepones.push(dragon, zorro, bufalo)
 function iniciarJuego() {
 
   selectionAttack.style.display = "none"
+  sectionVerMapa.style.display = "none"
 
   mokepones.forEach((mokepon) => {
     opcionDeMokepones = `
@@ -100,10 +116,14 @@ function iniciarJuego() {
 
 }
 
-function seleccionarMascotaJugador() {
+function seleccionarMascotaJugador() { 
   selectionMascot.style.display = "none"
-  selectionAttack.style.display = "block"
+  // selectionAttack.style.display = "block"
+  sectionVerMapa.style.display = "flex"
 
+  iniciarMapa()
+  
+  
   if (inputdragon.checked) {
     spanMascotPlayer.innerHTML = inputdragon.id
     mascotaJugador = inputdragon.id
@@ -127,7 +147,6 @@ function extraerAtaques(mascotaJugador) {
           ataques = mokepones[i].ataques
       }    
   }
-  // console.log(ataques)
   mostrarAtaques(ataques)
 }
 
@@ -143,9 +162,6 @@ function mostrarAtaques(ataques) {
   buttonEarth = document.getElementById("button-earth")
   botones = document.querySelectorAll(".BAtaque")
 
-  // buttonFire.addEventListener("click", ataqueFuego)
-  // buttonWater.addEventListener("click", ataqueAgua)
-  // buttonEarth.addEventListener("click", ataqueTierra)
 }
 
 function secuenciaAtaque() {
@@ -282,4 +298,61 @@ function ganadorMensaje(ganador) {
 function reloadPlay() {
   location.reload()
 }
+
+function pintarPersonaje() {
+  dragon.x += dragon.velocidadx
+  dragon.y += dragon.velocidady
+  lienzo.clearRect(0, 0, mapa.width, mapa.height)
+  lienzo.drawImage(
+    dragon.mapaFoto,
+     dragon.x,
+     dragon.y,
+     dragon.ancho,
+     dragon.alto
+    )
+}
+
+function derecha(){
+  dragon.velocidadx = 5
+}
+function abajo(){
+  dragon.velocidady = 5
+}
+function izquierda(){
+  dragon.velocidadx = -5
+}
+function arriba(){
+  dragon.velocidady = -5
+}
+
+function detenerMovimiento(){
+  dragon.velocidadx = 0
+  dragon.velocidady = 0
+}
+function sePresionoUnaTecla(event){
+   switch(event.key){
+    case 'ArrowUp':
+      arriba()
+      break
+    case 'ArrowDown':
+      abajo()
+      break
+    case 'ArrowLeft':
+      izquierda()
+      break
+    case 'ArrowRight':
+      derecha()
+      break
+    default:
+      break
+   }
+  console.log(event.key)
+}
+
+function iniciarMapa(){
+  intervalo = setInterval(pintarPersonaje, 50)
+  window.addEventListener('keydown', sePresionoUnaTecla)
+  window.addEventListener('keyup', detenerMovimiento)
+}
+
 window.addEventListener("load", iniciarJuego)

@@ -135,3 +135,16 @@ button{
     height: 40px;
     width: 110px;
 }
+#ver-mapa{
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#mapa{
+    margin: 20px 0;
+    border: #fbfbfb solid 2px;
+    width: 420px;
+    height: 300px;
+}
