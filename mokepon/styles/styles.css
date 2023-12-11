@@ -206,8 +206,9 @@ th, td {
     align-items: center;
     justify-content: center;
 }
-#mapa{
+#mapa {
     margin: 20px 0;
     border: #fbfbfb solid 2px;
-    width: 260px;
+    width: 280px;
+    height: 280px;
 }

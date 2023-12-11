@@ -19,6 +19,8 @@ const contenedorAtaques = document.getElementById('contenedorAtaques')
 const sectionVerMapa = document.getElementById("ver-mapa")
 const mapa = document.getElementById("mapa")
 
+let mascotasObjeto
+
 let mokepones = []
 let attackPlayer = []
 let attackEnemy = []
@@ -42,6 +44,9 @@ let liveEnemy = 3
 let lienzo = mapa.getContext("2d")
 let intervalo
 
+let mapaBackground = new Image()
+mapaBackground.src = "img/fondo-bufalo.jpg"
+
 class Mokepon{
   constructor(nombre, foto, vida){
     this.nombre = nombre
@@ -52,8 +57,8 @@ class Mokepon{
     this.y = 30
     this.x = 20
     this.y = 30
-    this.ancho = 80
-    this.alto = 80
+    this.ancho = 50
+    this.alto = 50
     this.mapaFoto = new Image()
     this.mapaFoto.src = foto
     this.velocidadx = 0
@@ -119,11 +124,6 @@ function iniciarJuego() {
 function seleccionarMascotaJugador() { 
   selectionMascot.style.display = "none"
   // selectionAttack.style.display = "block"
-  sectionVerMapa.style.display = "flex"
-
-  iniciarMapa()
-  
-  
   if (inputdragon.checked) {
     spanMascotPlayer.innerHTML = inputdragon.id
     mascotaJugador = inputdragon.id
@@ -137,6 +137,9 @@ function seleccionarMascotaJugador() {
     alert("Debes seleccionar una mascota")
   }
   extraerAtaques(mascotaJugador)
+  sectionVerMapa.style.display = "flex"
+
+  iniciarMapa()
   seleccionarMascotaEnemigo()
 }
 
@@ -299,35 +302,40 @@ function reloadPlay() {
   location.reload()
 }
 
-function pintarPersonaje() {
-  dragon.x += dragon.velocidadx
-  dragon.y += dragon.velocidady
+function pintarCanvas() {
+  mascotasObjeto.x += mascotasObjeto.velocidadx
+  mascotasObjeto.y += mascotasObjeto.velocidady
   lienzo.clearRect(0, 0, mapa.width, mapa.height)
+  lienzo.drawImage(mapaBackground, 
+    0, 
+    0, 
+    mapa.width, 
+    mapa.height)
   lienzo.drawImage(
-    dragon.mapaFoto,
-     dragon.x,
-     dragon.y,
-     dragon.ancho,
-     dragon.alto
+    mascotasObjeto.mapaFoto,
+     mascotasObjeto.x,
+     mascotasObjeto.y,
+     mascotasObjeto.ancho,
+     mascotasObjeto.alto
     )
 }
 
 function derecha(){
-  dragon.velocidadx = 5
+  mascotasObjeto.velocidadx = 5
 }
 function abajo(){
-  dragon.velocidady = 5
+  mascotasObjeto.velocidady = 5
 }
 function izquierda(){
-  dragon.velocidadx = -5
+  mascotasObjeto.velocidadx = -5
 }
 function arriba(){
-  dragon.velocidady = -5
+  mascotasObjeto.velocidady = -5
 }
 
 function detenerMovimiento(){
-  dragon.velocidadx = 0
-  dragon.velocidady = 0
+  mascotasObjeto.velocidadx = 0
+  mascotasObjeto.velocidady = 0
 }
 function sePresionoUnaTecla(event){
    switch(event.key){
@@ -350,9 +358,20 @@ function sePresionoUnaTecla(event){
 }
 
 function iniciarMapa(){
-  intervalo = setInterval(pintarPersonaje, 50)
+  mascotasObjeto = obtenerObjetoMascota(mascotaJugador)
+  mapa.width + 800
+  mapa.height + 800
+  intervalo = setInterval(pintarCanvas, 50)
   window.addEventListener('keydown', sePresionoUnaTecla)
   window.addEventListener('keyup', detenerMovimiento)
+}
+
+function obtenerObjetoMascota(mascotaJugador){
+  for (let i = 0; i < mokepones.length; i++) {
+    if (mascotaJugador === mokepones[i].nombre) {
+      return mokepones[i]
+    }    
+}
 }
 
 window.addEventListener("load", iniciarJuego)
