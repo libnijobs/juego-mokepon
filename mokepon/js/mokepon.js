@@ -48,15 +48,13 @@ let mapaBackground = new Image()
 mapaBackground.src = "img/fondo-bufalo.jpg"
 
 class Mokepon{
-  constructor(nombre, foto, vida){
+  constructor(nombre, foto, vida, x = 0, y = 0){
     this.nombre = nombre
     this.foto = foto
     this.vida = vida
     this.ataques = []
-    this.x = 20
-    this.y = 30
-    this.x = 20
-    this.y = 30
+    this.x = x
+    this.y = y
     this.ancho = 50
     this.alto = 50
     this.mapaFoto = new Image()
@@ -64,11 +62,26 @@ class Mokepon{
     this.velocidadx = 0
     this.velocidady = 0
   }
+  pintarMokepon() {
+    lienzo.drawImage(
+      this.mapaFoto,
+      this.x,
+      this.y,
+      this.ancho,
+      this.alto
+    )
+  }
 }
 
-let dragon = new Mokepon("Dragon","img/dragon-removebg-preview.png",5)
-let zorro = new Mokepon("Zorro","img/zorro-removebg-preview.png",5)
-let bufalo = new Mokepon("Bufalo","img/bufalo-removebg-preview.png",5)
+let dragon = new Mokepon("Dragon","img/dragon-removebg-preview.png",5, 30, 70)
+let zorro = new Mokepon("Zorro","img/zorro-removebg-preview.png",5, 30, 70)
+let bufalo = new Mokepon("Bufalo","img/bufalo-removebg-preview.png",5, 30, 70)
+
+
+let dragonEnemigo = new Mokepon("Dragon","img/dragon-removebg-preview.png",5, 150, 50)
+let zorroEnemigo = new Mokepon("Zorro","img/zorro-removebg-preview.png",5, 200, 95)
+let bufaloEnemigo = new Mokepon("Bufalo","img/bufalo-removebg-preview.png",5, 90, 90)
+
 
 dragon.ataques.push(
   {nombre: '💧', id: 'button-water'},
@@ -123,7 +136,7 @@ function iniciarJuego() {
 
 function seleccionarMascotaJugador() { 
   selectionMascot.style.display = "none"
-  // selectionAttack.style.display = "block"
+  
   if (inputdragon.checked) {
     spanMascotPlayer.innerHTML = inputdragon.id
     mascotaJugador = inputdragon.id
@@ -140,7 +153,7 @@ function seleccionarMascotaJugador() {
   sectionVerMapa.style.display = "flex"
 
   iniciarMapa()
-  seleccionarMascotaEnemigo()
+  
 }
 
 function extraerAtaques(mascotaJugador) {
@@ -200,6 +213,7 @@ function seleccionarMascotaEnemigo() {
 }
 
 function ataqueAleatorioEnemigo() {
+  console.log("ataque aleatorio enemigo", ataquesMokeponEnemigo)
   let ataqueAleatorio = aleatorio(0, ataquesMokeponEnemigo.length - 1)
 
   if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {
@@ -310,14 +324,19 @@ function pintarCanvas() {
     0, 
     0, 
     mapa.width, 
-    mapa.height)
-  lienzo.drawImage(
-    mascotasObjeto.mapaFoto,
-     mascotasObjeto.x,
-     mascotasObjeto.y,
-     mascotasObjeto.ancho,
-     mascotasObjeto.alto
+    mapa.height
     )
+    mascotasObjeto.pintarMokepon()
+    dragonEnemigo.pintarMokepon()
+    zorroEnemigo.pintarMokepon()
+    bufaloEnemigo.pintarMokepon()
+
+    if(mascotasObjeto.velocidadx !==0 || mascotasObjeto.velocidady !==0){
+      detenerMovimiento()
+      revisarColision(dragonEnemigo)
+      revisarColision(zorroEnemigo)
+      revisarColision(bufaloEnemigo)
+}
 }
 
 function derecha(){
@@ -372,6 +391,31 @@ function obtenerObjetoMascota(mascotaJugador){
       return mokepones[i]
     }    
 }
+}
+
+function revisarColision(enemigo){
+  const arribaEnemigo = enemigo.y
+  const abajoEnemigo = enemigo.y + enemigo.alto
+  const derechaEnemigo = enemigo.x + enemigo.ancho
+  const izquierdaEnemigo = enemigo.x
+
+  const arribaMascota = mascotasObjeto.y
+  const abajoMascota = mascotasObjeto.y + mascotasObjeto.alto
+  const derechaMascota = mascotasObjeto.x + mascotasObjeto.ancho
+  const izquierdaMascota = mascotasObjeto.x
+
+  if (abajoMascota < arribaEnemigo || 
+    arribaMascota > abajoEnemigo || 
+    derechaMascota < izquierdaEnemigo || 
+    izquierdaMascota > derechaEnemigo
+    ) {
+    return
+  }
+  
+  selectionAttack.style.display = "block"
+  sectionVerMapa.style.display = "none"
+  seleccionarMascotaEnemigo(enemigo)
+
 }
 
 window.addEventListener("load", iniciarJuego)
